@@ -3,8 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class GeminiService {
-  static String apiKey =
-      dotenv.env['API_KEY'].toString(); // Replace with your API key
+  static String apiKey = dotenv.env['API_KEY'].toString();
   static const String _apiUrl =
       'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 

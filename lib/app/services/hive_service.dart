@@ -61,12 +61,9 @@ class HiveService {
       final sessionData = _box.get(sessionId);
 
       ChatSession session = sessionData;
+      final tempList = List.of(newMessage);
 
-      session.messages.clear();
-      session.messages.addAll(newMessage);
-
-      sessionData['messages'] =
-          session.messages.map((msg) => msg.toJson()).toList();
+      session.messages = tempList;
 
       await _box.put(sessionId, sessionData);
     }

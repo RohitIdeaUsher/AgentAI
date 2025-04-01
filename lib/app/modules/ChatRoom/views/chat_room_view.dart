@@ -13,8 +13,6 @@ class ChatRoomView extends GetView<ChatRoomController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).chipTheme.surfaceTintColor,
-      // floatingActionButton:
-      //     FloatingActionButton(onPressed: () => Get.to(const VoiceToText())),
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
         leading: IconButton(
@@ -40,9 +38,7 @@ class ChatRoomView extends GetView<ChatRoomController> {
         Obx(() {
           if (controller.messagesList.isEmpty) {
             return Text("Ask your query.",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge); //UtilWidgets.noDataFound(title: "Messages");
+                style: Theme.of(context).textTheme.bodyLarge);
           }
           return Expanded(
             child: ListView.builder(
@@ -69,7 +65,6 @@ class ChatRoomView extends GetView<ChatRoomController> {
         ),
       ],
     );
-    // : UtilWidgets.noDataFound(title: "No Conversation Found.");
   }
 
   Obx inputOptions(BuildContext context) {

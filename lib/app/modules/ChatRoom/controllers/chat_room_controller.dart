@@ -5,23 +5,19 @@ import 'package:get/get.dart';
 import 'package:virtualagentchat/app/modules/ChatRoom/model/chat_message.dart';
 import 'package:virtualagentchat/app/modules/HomePage/model/chat_session.dart';
 import 'package:virtualagentchat/app/services/gemini_aiservice.dart';
+import 'package:virtualagentchat/app/services/hive_service.dart';
 
 class ChatRoomController extends GetxController {
   TextEditingController messageText = TextEditingController();
-  // RxList<ChatModel> messagesList = <ChatModel>[].obs;
   RxList<ChatMessage> messagesList = <ChatMessage>[].obs;
   ChatSession? argument;
-
-  String userId = "";
-
   RxString typing = "".obs;
   RxBool disableInputOption = false.obs;
 
-  String currentSessionId = '';
   @override
   void onInit() {
     super.onInit();
-    // currentSessionId = Get.arguments;
+
     argument = Get.arguments;
   }
 
@@ -37,7 +33,6 @@ class ChatRoomController extends GetxController {
     } catch (e) {
       log(e.toString());
     }
-    // print("3a02416d-b8db-4a6c-b3e0-31e1a192b387");
   }
 
   void sendMessage(String message) {
@@ -77,15 +72,15 @@ class ChatRoomController extends GetxController {
     }
   }
 
-  // void updateLastmessage() async {
-  //   if (messagesList.isNotEmpty) {
-  //     Get.find<HomePageController>().refresh();
-  //   }
-  // }
+  void updateLastmessage() async {
+    if (messagesList.isNotEmpty) {
+      HiveService().updateSessionMessages(argument?.id ?? "", messagesList);
+    }
+  }
 
   @override
   void onClose() {
-    // updateLastmessage();
+    updateLastmessage();
     super.onClose();
   }
 }

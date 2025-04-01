@@ -21,7 +21,7 @@ class HomePageView extends GetView<HomePageController> {
         centerTitle: true,
       ),
       floatingActionButton: GestureDetector(
-        onTap: controller.createNew,
+        onTap: controller.createNewSession,
         child: LottieBuilder.asset(
           "assets/animations/ailoader5.json",
           height: 80.h,

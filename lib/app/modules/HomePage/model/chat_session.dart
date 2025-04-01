@@ -11,7 +11,7 @@ class ChatSession {
   final String createdAt;
 
   @HiveField(2)
-  final List<ChatMessage> messages;
+  List<ChatMessage> messages;
 
   ChatSession({
     required this.id,

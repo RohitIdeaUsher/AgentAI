@@ -23,19 +23,10 @@ class HomePageController extends GetxController {
   }
 
   void loadAllSessions() async {
-    // sessionList.value = _hiveService.getAllSessionIds();
     sessionList.value = await _localService.getAllSessions();
   }
 
-  // Create a new session with unique ID
-  // void createNewSession() async {
-  //   final newSessionId = Uuid().generateV4();
-  //   await _hiveService.createSession(newSessionId);
-
-  //   chatRoom(newSessionId);
-  // }
-
-  void createNew() async {
+  void createNewSession() async {
     final newSessionId = Uuid().generateV4();
     final newSession = await HiveService().createNewSession(newSessionId);
     sessionList.insert(0, newSession);
